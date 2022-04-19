@@ -1,0 +1,36 @@
+body,html {
+    height: 100%;
+  }
+  
+  .contenedor {
+    padding: 0px;
+    width: 500px;
+    margin-left: 15%;
+    margin-right: 15%;
+  }
+  
+  .chat {
+    padding: 6px;
+    border-radius: 6px;
+    margin-bottom: 3px;
+  }
+  
+  .bot {
+    background: #000000;
+    max-width: 250px;
+    color: white;
+    margin-left: auto;
+  }
+  
+  .respuesta {
+    background: orange;
+    max-width: 250px;
+    color: white;
+    margin: 13px 1px;
+  }
+  
+  .input {
+    width: 500px;
+    margin-left: 15%;
+    margin-right: 15%
+}
