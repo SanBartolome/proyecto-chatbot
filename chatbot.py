@@ -56,31 +56,233 @@ count_vectorizer = CountVectorizer()
 dataset = """
 *saludos
 hola
+buenos días
+buen dia
+buenas tardes
+buenas noches
+hi
 cómo estás
 cómo vás
 cómo te va
 qué tal
 
-*búsqueda_restaurantes
-estoy buscando un lugar para comer
-quiero almorzar
-busco un lugar para cenar
-muestrame restaurantes chinos
-busca restaurantes
+*solicitud_de_tarjeta
+quisiera solicitar una tarjeta
+como puedo tener una tarjeta
+quiero una tarjeta
+quiero una tarjeta nueva
+como puedo sacar una tarjeta
+como sacar una tarjeta
+cómo solicitar una tarjeta
+tramitar tarjeta nueva
+quiero tramitar tarjeta
+
+*entrega_de_tarjeta
+cuando llegara mi tarjeta
+cuando llegara la tarjeta
+me pueden indicar cuándo llegará mi tarjeta
+aún no llega mi tarjeta
+aún no me entregan la tarjeta
+no he recibido la tarjeta
+no recibí noticias de la tarjeta
+cuánto tengo que esperar para que me traigan la tarjeta
+hay un tiempo estimado para la entrega de tarjeta
+puedo saber cuando llegara la tarjeta
+cuando llega mi tarjeta
+porque no llega mi tarjeta
+aun no me mandan mi plastico
+aun no me mandan mi tarjeta
+no me llega la tarjeta
+no me llega el plastico
+me mandarán la tarjeta?
+quisiera ver donde va la tarjeta que me enviaran
+donde esta mi nueva tarjeta
+pedí mi tarjeta hace dos semanas y aún no llega, que hago
+aun no recibo la tarjeta que pedi hace una semana
+como puedo ver el estado de entrega de mi tarjeta
+aun sigo esperando por la tarjeta
+donde esta mi tarjeta
+cuanto tengo que esperar para que me llegue la tarjeta
+me pueden confirmar la fecha y hora de entrega de mi tarjeta
+porque aun no llega mi tarjeta
+pueden trackear donde esta mi tarjeta
+
+*cancelacion_tarjeta
+deseo cancelar mi plástico
+deseo cancelar el plástico
+deseo cancelar mi cuenta
+deseo cancelar mi tarjeta de crédito
+quiero anular mi tarjeta 
+quiero cancelar mi tarjeta de crédito
+escribo para anular mi tarjeta 
+escribo para anular mi cuenta
+escribo para cancelar mi tarjeta 
+busco anular mi tarjeta
+busco anular la tarjeta
+busco anular mi plástico
+cancélenme la tarjeta
+anúlenme la tarjeta
+pésima tarjeta, no me gusta
+quiero deshacerme de la tarjeta
+quiero deshacerme del plástico
+quiero cancelar mi contrato 
+deseo retirarme del banco
+ya no quiero tener mi tarjeta con ustedes
+la tarjeta me trae muchos problemas
+la tarjeta de crédito me trae muchos problemas
+la tarjeta no era lo que esperaba
+quiero anular mi cuenta
+
+*robo_tarjeta
+me robaron la tarjeta
+me acaban de robar todas mis cosas
+me robaron todas mis cosas
+me extrajeron mis tarjetas
+me asaltaron y me robaron mis pertenencias
+me acaban de robar la tarjeta
+me robaron el plástico
+me asaltaron ayer
+me asaltaron en la mañana
+acabo de sufrir un asalto
+quiero cancelar mi tarjeta por robo
+ayuda me robaron la tarjeta
+que hago si me robaron la tarjeta
+robo de tarjeta
+necesito cancelar mi tarjeta por robo
+me hurtaron la tarjeta
+me extrajeron la tarjeta
+me extrajeron mis pertenencias
+ha habido alguna actividad en mi tarjeta hoy?
+perdi mi billetera con todas mis tarjetas ahí
+ayuda! perdí mi tarjeta!
+necesito reportar una tarjeta robada
+quiero reportar que me robaron la tarjeta
+creo que me robaron la tarjeta
+no encuentro mi tarjeta. por favor ayudemnte
+mi tarjeta fue robada
+mi plastico fue robado
+no encuentro mi tarjeta, creo que me robaron
+pienso que me robaron la tarketa
+ayuda, tengo miedo que me hayan robado la tarjeta
+alguien robo mi tarjeta
+me pueden ayudar a encontrar mi tarjeta
+mi tarjeta se perdio, ayuda
+se perdio mi tarjeta, que podría hacer?
+reporto que me robaron la tarjeta, ayuda
+mi tarjeta desapareció
+ya no encuentro mi tarjeta
+mi tarjeta fue robada anoche
+deje mi tarjeta en el restaurante y se perdio
+mi tarjeta fue robada, hablé con la policia pero quiero reportarlo aquí
+creo que perdi mi tarjeta, no se desde cuando, pueden ver si alguien la usó
+cual es el numero para congelar la tarjeta
+como desactivo una tarjeta
+mi tarjeta se perdió cuando fui de vacaciones
+mi billetera fue robada cuando fui de vacaciones
+
+*consulta_millas
+quiero saber cuántas millas tengo acumuladas
+deseo saber millas disponibles
+quiero saber millas disponibles
+busco saber millas disponibles
+quiero ver mis millas acumuladas
+ver mis millas para viajes aereos
+millas para viaje
+cantidad de millas acumuladas
+quiero saber cuantas millas me quedan
+cuantas millas tengo
+aún no se cuantas millas tengo
+quiero saber cuanto vale una milla
+cuanto vale una milla
+cómo consigo más millas
+
+*cobro_no_reconocido
+tengo un cobro no reconocido
+hay un cargo que no reconozco
+hay una compra que no hice
+veo una compra que no me corresponde
+hay una transacción que no hice
+me ha llegado un cobro que no hice
+ayuda tengo un cobro que no hice
+
+*ver_estado_cuenta
+quiero ver mi estado de cuenta
+cómo puedo ver mi estado de cuenta
+deseo ver mi extracto
+quiero ver mis compras del mes
+deseo ver mi estado de cuenta
+donde veo mi estado de cuenta
+necesito ver mi estado de cuenta
+quiero obtener mi estado de cuenta mensual
+
+*hablar_con_humano
+quiero hablar con un humano
+deseo hablar con una persona
+deseo hablar con un ejecutivo
+su chatbot no sirve de nada
+su bot no sirve de nada
+su chatbot no me ayuda
+su bot no me ayuda
+su chatbot me tiene harto
+su bot me tiene harto
+quiero hablar con una persona
+quiero hablar con un ejecutivo
+quiero hablar con un asesor
+quiero conversar con una persona
+necesito hablar con un humano
+necesito hablar con una persona
+necesito hablar con un ejecutivo
+no quiero hablar con un bot
+no deseo hablar con un robot
+no deseo hablar con un chatbot
+quiero que me contacte un asesor
+quiero que me contacte un ejecutivo
+quiero que me contacte una persona
+
+*volver_a_empezar
+marqué la opción incorrecta
+volver a menu
 
 *afirmación
 si
 ok
+okay
+afirmativo
 vale
 me parece bien
+exactamente
+correcto
+me entendieron finalmente
+así es
 de acuerdo, gracias
+
+*negacion
+no
+negativo
+que no!
+ya les dije que no
+incorrecto
+justo lo contrario
+no es así
 
 *despedida
 chau
+hasta luego
+gracias. hasta pronto!
 hasta pronto
 nos vemos
 hasta la próxima
 hasta otra oportunidad
+ok, cuidense
+ok, cuidate
+
+*enojo
+no me ayudaron en nada
+no les entiendo
+me tienen harto
+me tienen harta
+no me sirve su respuesta
+tienen un muy mal servicio
 """
 
 """# Entrenamos un modelo con nuestro dataset
@@ -172,29 +374,51 @@ def predict_intent(sentence, count_vectorizer, model):
 
 """# Creamos un pequeño dataset de utterances asociados a sentencias"""
 
-dataset = """
+dataset = dataset = """
 *saludos
-hola
-qué bueno verte
-qué me cuentas
-qué hay de nuevo
-qué onda
+Hola, gracias por escribir. ¿En qué puedo ayudarte?
+Hola, gracias por escribir. Indícanos tu consulta.
 
-*recomendación_restaurante
-Bien, yo te recomiendo el 7 sopas. Te parece bien ?
-Que tal el Chifa Oso Panda, suena bien ?
-El Shimaya Ramen es una buena opción, te animas ?
+*solicitud_de_tarjeta
+Excelente, estoy preparado para poder guiarte en el proceso de solicitud de tarjeta. ¿Iniciamos con el trámite?
+
+*entrega_de_tarjeta
+El rango de entrega de las tarjetas de 4 a 6 días. ¿Necesitas información de dónde se encuentra actualmente?
+
+*cancelacion_tarjeta
+Lamentamos la decisión, tener en cuenta que una vez cancelada la tarjeta ya no se puede recuperar. ¿Deseas continuar con el proceso?
+
+*robo_tarjeta
+Lamentamos el inconveniente, para bloquear tu tarjeta por pérdida o robo necesitamos validar tus datos personales. ¿Iniciamos con la solicitud?
+
+*consulta_millas
+De acuerdo, estoy capacitado para poder mostrarte la cantidad de millas disponibles. ¿Iniciamos con el proceso de consulta?
+
+*cobro_no_reconocido
+Lo sentimos, podemos ayudar en la generación de un reclamo. ¿Necesitas que iniciemos ese trámite?
+
+*ver_estado_cuenta
+Puedo ayudar indicando los últimos 10 consumos de tu tarjeta. ¿Necesitas dicha información?.
+
+*hablar_con_humano
+En estos momentos tenemos gran demanda de asesores. Sin embargo, estoy entrenado para ayudar con ciertos trámites. ¿Deseas esperar a la comunicación con un agente?
+
+*volver_a_empezar
+¿En qué más podemos ayudarte?
 
 *afirmación
-excelente
-bueno
-de nada
+Excelente, nos alegra poder ayudarte. ¿Tienes alguna consulta adicional?
+
+*negacion
+Disculpa, no te hemos entendido. Por favor, ¿nos podrías indicar de manera breve en qué te podemos ayudar?
 
 *despedida
-chau
-nos vemos
-adios
+Muchas gracias por utilizar nuestro canal web.
+
+*enojo
+Disculpa, no te hemos entendido.¿Necesitas que te comuniquemos con un agente?
 """
+
 
 """## Métodos para crear el dataset"""
 
@@ -222,10 +446,20 @@ utterances_examples
 """## Definimos las reglas intent - utterance"""
 
 rules = {
-    "saludos": "saludos",
-    "búsqueda_restaurantes": "recomendación_restaurante",
-    "afirmación": "afirmación",
-    "despedida": "despedida"
+ "saludos": "saludos",
+ "solicitud_de_tarjeta": "solicitud_de_tarjeta",
+ "entrega_de_tarjeta": "entrega_de_tarjeta",
+ "cancelacion_tarjeta": "cancelacion_tarjeta",
+ "robo_tarjeta": "robo_tarjeta",
+ "consulta_millas": "consulta_millas",
+ "cobro_no_reconocido": "cobro_no_reconocido",
+ "ver_estado_cuenta": "ver_estado_cuenta",
+ "hablar_con_humano": "hablar_con_humano",
+ "volver_a_empezar": "volver_a_empezar",
+ "afirmación": "afirmación",
+ "negacion": "negacion",
+ "despedida": "despedida",
+ "enojo":"enojo"
 }
 
 """# Creamos un módulo que genere lo que el chatbot va responder
