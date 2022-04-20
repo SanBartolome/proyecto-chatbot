@@ -63,14 +63,14 @@ def send_message():
         identityNumber = ''
         answer = 'Por favor, ingresa el número de tu DNI'
         personalData = False
-      elif message.capitalize() != 'No' and not ('birthDate' in globals()):
+      elif message.capitalize() != 'No' and not ('identityBirthdate' in globals()):
         identityNumber = message
-        global birthDate
-        birthDate= ''
+        global identityBirthdate
+        identityBirthdate= ''
         answer = 'Ahora por favor, ingresa tu fecha de nacimiento'
         personalData = False
       else:
-        birthDate = message
+        identityBirthdate = message
         if not personalData: 
           answer = 'Validación de datos confirmada, muchas gracias.\n' + res
         else:
