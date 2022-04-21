@@ -1,8 +1,9 @@
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify, render_template, make_response, session
 import pickle
 from chatbot import return_answer
 
 app = Flask(__name__)
+app.secret_key = '123dJSi&JHD$jJDnk754'
 
 @app.route('/', methods=['GET'])
 def index():
@@ -38,48 +39,46 @@ def send_message():
   decision_tree_classifier = pickle.load(open("decision_tree_classifier.pickle", "rb"))
   rules = pickle.load(open("rules.pickle", "rb"))
   utterances_examples = pickle.load(open("utterances_examples.pickle", "rb"))
-  
-  # if message != 'Yakarta':
-  #   answer, intent = return_answer(message, count_vectorizer, decision_tree_classifier, rules, utterances_examples)
-  # else:
-  #   answer = message
-  if not ('res' in globals()):
-    global res
+
+  response = session.get('response')
+  if response == None:
     answer, intent = return_answer(message, count_vectorizer, decision_tree_classifier, rules, utterances_examples)
     res = intents[intent]
+    session['response'] = res
   else:
-    if res != '':
+    if response != '':
+      personalData = session.get('personalData')
+      cardNumber = session.get('cardNumber')
+      identityNumber = session.get('identityNumber')
+      identityBirthdate = session.get('identityBirthdate')     
       if message.capitalize() == 'Si' or message.capitalize() == 'Sí':
-        global personalData
-        personalData = True
-      if message.capitalize() != 'No' and not ('cardNumber' in globals()):
-        global cardNumber
-        cardNumber = ''
+        session['personalData'] = True
+      if message.capitalize() != 'No' and cardNumber == None:
+        session['cardNumber'] = ''
+        session['personalData'] = False
         answer = 'Por favor, bríndanos tus datos. Ingresa el número de tu tarjeta.'
-        personalData = False
-      elif message.capitalize() != 'No' and not ('identityNumber' in globals()):
-        cardNumber = message
-        global identityNumber
-        identityNumber = ''
+      elif message.capitalize() != 'No' and identityNumber == None:
+        session['cardNumber'] = message
+        session['identityNumber'] = ''
+        session['personalData'] = False
         answer = 'Por favor, ingresa el número de tu DNI'
-        personalData = False
-      elif message.capitalize() != 'No' and not ('identityBirthdate' in globals()):
-        identityNumber = message
-        global identityBirthdate
-        identityBirthdate= ''
+      elif message.capitalize() != 'No' and identityBirthdate == None:
+        session['identityNumber'] = message
+        session['identityBirthdate'] = ''
+        session['personalData'] = False
         answer = 'Ahora por favor, ingresa tu fecha de nacimiento'
-        personalData = False
+        print('No. Ask date')
       else:
-        identityBirthdate = message
-        if not personalData: 
-          answer = 'Validación de datos confirmada, muchas gracias.\n' + res
+        session['identityBirthdate'] = message
+        if personalData == False: 
+          answer = 'Validación de datos confirmada, muchas gracias.\n' + response
         else:
-          answer = res
+          answer = response
         answer = answer + '\n¿Necesitas algo más?'
         if message.capitalize() == 'No':
           answer = '¿En que más puedo ayudarte?'
-        res = ''
-        personalData = True
+        session['response'] = ''
+        session['personalData'] = True
     else:
       if  message.capitalize() == 'No':
         answer = 'Fue un gusto atenderte. Adiós.'
@@ -88,7 +87,7 @@ def send_message():
       else:
         answer, intent = return_answer(message, count_vectorizer, decision_tree_classifier, rules, utterances_examples)
         if intent in intents:
-          res = intents[intent]
+          session['response'] = intents[intent]
 
   
   response_text = { "message":  answer }
